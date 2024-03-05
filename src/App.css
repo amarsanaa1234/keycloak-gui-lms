@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  /*background-color: #121212;*/
+  color: white;
+}
+h1{
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .App-logo {
@@ -36,3 +44,38 @@
     transform: rotate(360deg);
   }
 }
+body {
+  background: linear-gradient(270deg, #6AB8EE, #193D3C);
+  -webkit-animation: waves 5s ease infinite;
+  -moz-animation: waves 5s ease infinite;
+  background-size: 200%;
+  animation: waves 5s ease infinite;
+}
+
+@-webkit-keyframes waves {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes waves {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes waves {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.mainTitle {
+  font-weight: bold;
+  font-size: 5rem;
+  margin: 15% auto;
+  font-family: 'Signika', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  color: #cdcdcd;
+  text-shadow: 2px 2px #193D3C;
+}
+
