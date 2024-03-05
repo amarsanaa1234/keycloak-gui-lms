@@ -25,7 +25,7 @@ const App = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
     return (
-            <Layout style={{}}>
+            <Layout style={{marginTop: '200px'}}>
                 <Sider
                     collapsible
                     collapsed={collapsed}

@@ -6,7 +6,7 @@ import kc from "../keycloak/KeyCloakSetting";
 import {initKeycloak, isAuthenticated} from '../keycloak/keycloak';
 
 const Nav = () => {
-
+    console.log('isAuthenticated123', isAuthenticated)
     return (
         < >
             <Header style={{background: "#1F2544"}}>

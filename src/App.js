@@ -9,25 +9,37 @@ import {Button, Image} from "antd";
 import shutis_logo from "./img/odon-must-sm.png";
 import {initKeycloak, isAuthenticated} from './keycloak/keycloak'
 import kc from "./keycloak/KeyCloakSetting"
-console.log('12323', isAuthenticated);
+import TeacherMenu from "./components/TeacherMenu";
 const App = () => {
 
     const [authInitialized, setAuthInitialized] = useState(false);
+    const [userRoles, setUserRoles] = useState([]);
 
     useEffect(() => {
         initKeycloak().then(() => {
             setAuthInitialized(true);
+            const roles = kc.resourceAccess && kc.resourceAccess.keycloak_rest_api && kc.resourceAccess.keycloak_rest_api.roles || [];
+            setUserRoles(roles);
         });
     }, []);
 
-    console.log('123', isAuthenticated);
-    console.log('000', kc.resourceAccess.keycloak_rest_api.roles);
 
     return (
         <div className="App">
             {isAuthenticated ?
                 <>
-                    <Nav/>
+                    <div>
+                        {userRoles.map((item, index)  => {
+
+                            if(item === "client_student"){
+                                console.log('student')
+                                return <Nav key={index}/>
+                            }else{
+                                console.log('teacher')
+                                return <TeacherMenu key={index}/>
+                            }
+                        })}
+                    </div>
                     <BrowserRouter>
                         <Routes>
                             <Route exact path="/" element={<WelcomePage/>}/>
