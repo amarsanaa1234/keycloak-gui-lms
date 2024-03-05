@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { LaptopOutlined,MenuUnfoldOutlined, MenuFoldOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import {Breadcrumb, Button, Layout, Menu, theme} from 'antd';
+import {Button, Layout, Menu, theme} from 'antd';
 const { Header, Content, Sider } = Layout;
-const items1 = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
+
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
     const key = String(index + 1);
     return {

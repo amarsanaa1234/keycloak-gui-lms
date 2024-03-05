@@ -1,4 +1,5 @@
-import { useKeycloak } from "@react-keycloak/web";
+import {useKeycloak} from "keycloak-react-web";
+
 
 const PrivateRoute = ({ children }) => {
     const { keycloak } = useKeycloak();

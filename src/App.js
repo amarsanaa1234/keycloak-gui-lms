@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import WelcomePage from "./pages/Homepage";
@@ -7,39 +7,25 @@ import PrivateRoute from "./helpers/PrivateRoute";
 import './App.css'
 import {Button, Image} from "antd";
 import shutis_logo from "./img/odon-must-sm.png";
-import keycloak from './keycloak/keycloak'
-import Keycloak from 'keycloak-js';
+import {initKeycloak, isAuthenticated} from './keycloak/keycloak'
+import kc from "./keycloak/KeyCloakSetting"
+console.log('12323', isAuthenticated);
+const App = () => {
 
+    const [authInitialized, setAuthInitialized] = useState(false);
 
-let kc = new Keycloak(keycloak);
+    useEffect(() => {
+        initKeycloak().then(() => {
+            setAuthInitialized(true);
+        });
+    }, []);
 
-kc.init({
-    onLoad: keycloak.onLoad,
-    KeycloakResponseType: 'code',
-    silentCheckSsoRedirectUri: window.location.origin + "/silent-check-sso.html", checkLoginIframe: false,
-    pkceMethod: 'S256'
-}).then((auth) => {
-    if (!auth) {
-        window.location.reload();
-    } else {
-        console.info("Authenticated");
-        console.log('auth', auth)
-        console.log('Keycloak', kc)
-        kc.onTokenExpired = () => {
-            console.log('token expired')
-        }
-    }
-}, () => {
-    console.error("Authenticated Failed");
-});
-
-function App() {
-
-    console.log('kc///////', !kc.authenticated);
+    console.log('123', isAuthenticated);
+    console.log('000', kc.resourceAccess.keycloak_rest_api.roles);
 
     return (
         <div className="App">
-            {kc.authenticated ?
+            {isAuthenticated ?
                 <>
                     <Nav/>
                     <BrowserRouter>
@@ -72,55 +58,6 @@ function App() {
             }
         </div>
     )
-
-    // return (
-    //     <div className="App">
-    //         {kc.authenticated &&
-    //         <>
-    //             <Nav/>
-    //             <BrowserRouter>
-    //                 <Routes>
-    //                     <Route exact path="/" element={<WelcomePage/>}/>
-    //                     <Route
-    //                         path="/secured"
-    //                         element={
-    //                             <PrivateRoute>
-    //                                 <SecuredPage />
-    //                             </PrivateRoute>
-    //                         }
-    //                     />
-    //                 </Routes>
-    //             </BrowserRouter>
-                {/*{role === "client_admin" ?*/}
-                {/*    <div>*/}
-                {/*        admin*/}
-                {/*    < /div> : <></>*/}
-                {/*}*/}
-                {/*{role === "client_student" ?*/}
-                {/*    <div>*/}
-                {/*        student*/}
-                {/*    < /div> :*/}
-                {/*    <>*/}
-                {/*        <Nav/>*/}
-                {/*        <BrowserRouter>*/}
-                {/*            <Routes>*/}
-                {/*                <Route exact path="/" element={<WelcomePage/>}/>*/}
-                {/*                <Route*/}
-                {/*                    path="/secured"*/}
-                {/*                    element={*/}
-                {/*                        <PrivateRoute>*/}
-                {/*                            <SecuredPage />*/}
-                {/*                        </PrivateRoute>*/}
-                {/*                    }*/}
-                {/*                />*/}
-                {/*            </Routes>*/}
-                {/*        </BrowserRouter>*/}
-                {/*    </>*/}
-                {/*}*/}
-    //         </>
-    //         }
-    //     </div>
-    // );
 }
 
 export default App;
