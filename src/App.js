@@ -9,7 +9,6 @@ import {Button, Image} from "antd";
 import shutis_logo from "./img/odon-must-sm.png";
 import {initKeycloak, isAuthenticated} from './keycloak/keycloak'
 import kc from "./keycloak/KeyCloakSetting"
-import TeacherMenu from "./components/TeacherMenu";
 const App = () => {
 
     const [authInitialized, setAuthInitialized] = useState(false);
@@ -29,20 +28,11 @@ const App = () => {
             {isAuthenticated ?
                 <>
                     <div>
-                        {userRoles.map((item, index)  => {
-
-                            if(item === "client_student"){
-                                console.log('student')
-                                return <Nav key={index}/>
-                            }else{
-                                console.log('teacher')
-                                return <TeacherMenu key={index}/>
-                            }
-                        })}
+                        <Nav/>
                     </div>
                     <BrowserRouter>
                         <Routes>
-                            <Route exact path="/" element={<WelcomePage/>}/>
+                            <Route exact path="/" element={<WelcomePage roles={userRoles}/>}/>
                             <Route
                                 path="/secured"
                                 element={
