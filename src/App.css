@@ -44,13 +44,6 @@ h1{
     transform: rotate(360deg);
   }
 }
-body {
-  background: linear-gradient(270deg, #6AB8EE, #193D3C);
-  -webkit-animation: waves 5s ease infinite;
-  -moz-animation: waves 5s ease infinite;
-  background-size: 200%;
-  animation: waves 5s ease infinite;
-}
 
 @-webkit-keyframes waves {
   0%{background-position:0% 50%}
