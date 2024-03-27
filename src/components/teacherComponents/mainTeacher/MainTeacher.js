@@ -2,9 +2,8 @@ import React from 'react';
 import {Avatar, Button, Card, Layout, Menu} from 'antd';
 import Meta from "antd/es/card/Meta";
 import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
-import Lesson from "../lesson/Lesson";
-import Responsibility from "../responsibility/Responsibility";
-
+import TeacherLesson from "../teacherLesson/TeacherLesson";
+import TeacherResponsibility from "../teacherResponsibility/TeacherResponsibility";
 
 const { Content } = Layout;
 
@@ -31,7 +30,8 @@ const LayoutStyle = {
 
 const { Header} = Layout;
 
-const MainStudent = () => {
+const MainTeacher = () => {
+
     return (
         <Router>
             <Layout>
@@ -41,15 +41,14 @@ const MainStudent = () => {
                         alignItems: "center"
                     }}>
                         <Menu theme="dark" mode="horizontal" style={{
-                                maxWidth: 500,
-                                width: 500,
-                                display: "flex",
-                                justifyContent: "space-evenly",
-                            }}
-                        >
-                            <Link to="/lesson"><Button type="default">НҮҮР</Button></Link>
-                            <Link to="/responsibility"><Button type="default">БИЕ ДААЛТ</Button></Link>
-                            <Link to="/lesson"><Button type="default">НЭМЭЛТ ДААЛГАВАР</Button></Link>
+                            maxWidth: 700,
+                            width: 700,
+                            display: "flex",
+                            justifyContent: "space-evenly",
+                        }}>
+                            <Link to="/TeacherLesson"><Button type="default">НҮҮР</Button></Link>
+                            <Link to="/TeacherResponsibility"><Button type="default">Хичээлийн Мэдээлэл оруулах</Button></Link>
+                            <Link to="/lesson"><Button type="default">НЭМЭЛТ ДААЛГАВАР ОРУУЛАХ</Button></Link>
                         </Menu>
                     </Header>
                     <Layout style={LayoutStyle}>
@@ -58,8 +57,8 @@ const MainStudent = () => {
                             <Card style={{width: 300, marginTop: 16}}>
                                 <Meta
                                     avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1"/>}
-                                    title="Card title"
-                                    description="This is the description"
+                                    title="Багшийн Нэр"
+                                    description="CS.203"
                                 />
                             </Card>
                             <div style={{
@@ -87,20 +86,20 @@ const MainStudent = () => {
                             <Routes>
                                 <Route
                                     path="/"
-                                    element={<Lesson />}
+                                    element={<TeacherLesson />}
                                 ></Route>
                                 <Route
-                                    path="/lesson"
-                                    element={<Lesson />}
+                                    path="/TeacherLesson"
+                                    element={<TeacherLesson />}
                                 ></Route>
                                 <Route
-                                    path="/responsibility"
-                                    element={<Responsibility />}
+                                    path="/TeacherResponsibility"
+                                    element={<TeacherResponsibility />}
                                 ></Route>
-                                <Route
-                                    path="/lesson"
-                                    element={<Lesson />}
-                                ></Route>
+                                {/*<Route*/}
+                                {/*    path="/lesson"*/}
+                                {/*    element={<Lesson />}*/}
+                                {/*></Route>*/}
                             </Routes>
                         </Content>
                     </Layout>
@@ -109,4 +108,4 @@ const MainStudent = () => {
         </Router>
     )
 }
-export default MainStudent;
+export default MainTeacher;

@@ -1,14 +1,9 @@
 import React from 'react';
-import {Button, Image, Layout, Menu} from "antd";
-import shutisImage from '../../img/mustlogo.png';
+import {Button, Layout, Menu} from "antd";
 import contextKeycloak from "../../keycloak/contextKeycloak";
 
 
 const { Header} = Layout;
-const items1 = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
 const headerStyle = {
     textAlign: 'center',
     color: '#fff',
@@ -23,10 +18,7 @@ const MainHeader = () => {
     return (
         <Header style={headerStyle}>
             <div className="demo-logo">
-                <Image
-                    width={400}
-                    src={shutisImage}
-                />
+                <h1>ЦАХИМ СУРГАЛТ</h1>
             </div>
             <Menu
                 theme="dark"

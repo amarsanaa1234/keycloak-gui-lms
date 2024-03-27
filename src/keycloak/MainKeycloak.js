@@ -3,8 +3,7 @@ import Keycloak from "keycloak-js";
 import React, {useContext, useState} from "react";
 import contextLogin from "../components/contextLogin";
 import contextKeycloak from "../keycloak/contextKeycloak";
-import Homepage from "../pages/Homepage";
-import MainTeacher from "../components/teacherComponents/MainTeacher";
+import MainTeacher from "../components/teacherComponents/mainTeacher/MainTeacher";
 import MainStudent from "../components/studentComponents/mainStudent/MainStudent";
 import MainHeader from "../components/toolComponents/MainHeader";
 import {Layout} from "antd";
@@ -50,7 +49,6 @@ const MainKeycloak = () => {
     };
 
     const onKeycloakEvent = (event) => {
-        console.log(event);
         if (event === 'onReady') {
             setLoadingKeycloak(false);
         } else if (event === "onAuthSuccess") {
@@ -60,7 +58,6 @@ const MainKeycloak = () => {
     const onKeycloakTokens = (tokens) => {
         const { token } = tokens;
         if (token) {
-            console.log('token: ', keycloak.tokenParsed);
             setKeycloakToken(token);
             setLoggedUserDetail(keycloak.tokenParsed);
             setRole(keycloak.tokenParsed.resource_access.keycloak_rest_api.roles);
@@ -98,7 +95,7 @@ const MainKeycloak = () => {
                             <Layout style={layoutStyle}>
                                 <Content style={contentStyle}>
                                     <MainHeader/>
-                                    {roleComponents}
+                                        {roleComponents}
                                     <MainFooter/>
                                 </Content>
                             </Layout>
